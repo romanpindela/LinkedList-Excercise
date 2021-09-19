@@ -1,10 +1,10 @@
-package MyLinkedList;
+package mylinkedlist;
 
-public class NodeElement {
+public class Node {
     private String data;
-    private NodeElement next;
+    private Node next;
 
-    public NodeElement(String data) { this.data = data;}
+    public Node(String data) { this.data = data;}
 
     public String getData() {
         return data;
@@ -14,11 +14,11 @@ public class NodeElement {
         this.data = data;
     }
 
-    public NodeElement getNext() {
+    public Node getNext() {
         return next;
     }
 
-    public void setNext(NodeElement next) {
+    public void setNext(Node next) {
         this.next = next;
     }
 

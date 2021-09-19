@@ -1,6 +1,6 @@
-import MyLinkedList.MyLinkedList;
-import MyLinkedList.MyLinkedListImpl;
-import MyLinkedList.NodeElement;
+import mylinkedlist.MyLinkedList;
+import mylinkedlist.MyLinkedListImpl;
+import mylinkedlist.Node;
 
 public class App {
 
@@ -30,13 +30,13 @@ public class App {
 
         MyLinkedList myList = new MyLinkedListImpl();
 
-        myList.add(new NodeElement("Asia"));
-        myList.add(new NodeElement("Malwina"));
-        myList.add(new NodeElement("Kacper"));
-        myList.add(new NodeElement("Franciszek"));
-        myList.add(new NodeElement("Melania"));
-        myList.add(new NodeElement("Adrianna"));
-        myList.add(new NodeElement("Jakub"));
+        myList.add(new Node("Asia"));
+        myList.add(new Node("Malwina"));
+        myList.add(new Node("Kacper"));
+        myList.add(new Node("Franciszek"));
+        myList.add(new Node("Melania"));
+        myList.add(new Node("Adrianna"));
+        myList.add(new Node("Jakub"));
 
         for (int i = 0; i < 7; i++){
             System.out.println(myList.get(i));
