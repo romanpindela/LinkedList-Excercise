@@ -5,21 +5,20 @@ public class MyLinkedListImpl implements MyLinkedList {
 
     private Node head;
 
-    public MyLinkedListImpl(Node head) {
-        this.head = head;
-    }
-
 
     public MyLinkedListImpl() {
 
     }
 
     @Override
-    public Node head() {
+    public String getHead(){return getHeadNode().getData();}
+    private Node getHeadNode() {
         return this.head;
     }
 
-    public Node tail() {
+    @Override
+    public String getTail(){return getTailNode().getData();}
+    private Node getTailNode() {
         Node last = head;
         if (last == null) { return last; };
         while (last.getNext() != null) {
@@ -28,27 +27,78 @@ public class MyLinkedListImpl implements MyLinkedList {
         return last;
     }
 
-//    public static Node next(Node element){
-//        return element.getNext();
-//    }
 
-    @Override
-    public void add(Node element) {
-        Node lastNode = tail();
+    public void add(String s){ addNode(new Node(s));}
+    private void addNode(Node element) {
+        Node lastNode = getTailNode();
         if (head == null) {
             head = element;
         } else {
             lastNode.setNext(element);
         }
-//        System.out.println(head + " // " +lastNodeElement + " / " +  element);
     }
 
     @Override
-    public void add(int index, Node element) {
+    public void add(int index, String s) { addNode(index, new Node(s));}
+    private void addNode(int index, Node element) {
         Node positionNode = searchNode(index);
         Node oldNextNode = positionNode.getNext();
         positionNode.setNext(element);
         element.setNext(oldNextNode);
+    }
+
+
+    @Override
+    public String get(int index){ return getNode(index).getData();}
+    private Node getNode(int index) {
+        return searchNode(index);
+    }
+
+
+    @Override
+    public void remove(int index) {
+        if (index >= 1) {
+            Node previousNode = searchNode(index - 1);
+            Node nextNode = searchNode(index + 1);
+            previousNode.setNext(nextNode);
+        } else if (index == 0) {
+            head = head.getNext();
+        }
+    }
+
+    @Override
+    public void remove(String s){removeNode(new Node(s));}
+    private void removeNode(Node element) {
+        Node previousNode = previousNode(element);
+        Node nextNode = searchNode(element.getNext());
+        if (previousNode == null) {
+            head = element.getNext();
+        } else {
+            previousNode.setNext(nextNode);
+        }
+    }
+
+    @Override
+    public boolean contains(String s){return containseNode(new Node(s));}
+    private boolean containseNode(Node element) {
+        return searchNode(element) != null;
+    }
+
+
+
+    @Override
+    public int indexOf(String s){return indexOfNode(new Node(s));}
+    private int indexOfNode(Node element) {
+        Node positionNode = head;
+        int indexElement = 0;
+        while (positionNode != element && positionNode != null) {
+            positionNode = positionNode.getNext();
+            indexElement++;
+        }
+        if (positionNode == null) {
+            indexElement = -1;
+        }
+        return indexElement;
     }
 
 
@@ -68,76 +118,26 @@ public class MyLinkedListImpl implements MyLinkedList {
 
     private Node searchNode(Node element) {
         Node positionNode = head;
-        while (positionNode != element && positionNode != null) {
+        while (positionNode.getData() != element.getData() && positionNode != null) {
             positionNode = positionNode.getNext();
         }
         return positionNode;
     }
-
-    @Override
-    public Node get(int index) {
-        return searchNode(index);
-    }
-
-    @Override
-    public void remove(int index) {
-        if (index >= 1) {
-            Node previousNode = searchNode(index - 1);
-            Node nextNode = searchNode(index + 1);
-            previousNode.setNext(nextNode);
-        } else if (index == 0) {
-            head = head.getNext();
-        }
-    }
-
-    @Override
-    public boolean contains(Node element) {
-        return searchNode(element) != null;
-    }
-
 
     private Node previousNode(Node element) {
         Node positionNode = head;
-        while (positionNode.getNext() != element && positionNode != null) {
+        while (positionNode.getNext().getData() != element.getData() && positionNode != null) {
             positionNode = positionNode.getNext();
         }
         return positionNode;
-    }
-
-
-    @Override
-    public void remove(Node element) {
-        Node previousNode = previousNode(element);
-        Node nextNode = searchNode(element.getNext());
-        if (previousNode == null) {
-            head = element.getNext();
-        } else {
-            previousNode.setNext(nextNode);
-        }
-    }
-
-    @Override
-    public int indexOf(Node element) {
-        Node positionNode = head;
-        int indexElement = 0;
-        while (positionNode != element && positionNode != null) {
-            positionNode = positionNode.getNext();
-            indexElement++;
-        }
-        if (positionNode == null) {
-            indexElement = -1;
-        }
-        return indexElement;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node currentNode = head;
-        System.out.println(currentNode);
         while(currentNode != null){
             sb.append(currentNode);
-            System.out.println(currentNode);
         }
         return sb.toString();
     }

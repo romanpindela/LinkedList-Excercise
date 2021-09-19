@@ -3,24 +3,21 @@ package mylinkedlist;
 
 public interface MyLinkedList {
 
-    void add (int index, Node element);
+    void add (int index, String element);
 
-    void add (Node element);
+    void add (String element);
 
-    Node get(int index);
+    String get(int index);
 
-    int indexOf(Node element);
+    int indexOf(String element);
 
     void remove(int index);
 
-    void remove(Node element);
+    void remove(String element);
 
-    boolean contains(Node element);
+    boolean contains(String element);
 
-    Node head();
-
-    Node tail();
-
-//    Node next(Node element);
+    String getHead();
+    String getTail();
 
 }

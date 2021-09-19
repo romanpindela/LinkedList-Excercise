@@ -30,13 +30,13 @@ public class App {
 
         MyLinkedList myList = new MyLinkedListImpl();
 
-        myList.add(new Node("Asia"));
-        myList.add(new Node("Malwina"));
-        myList.add(new Node("Kacper"));
-        myList.add(new Node("Franciszek"));
-        myList.add(new Node("Melania"));
-        myList.add(new Node("Adrianna"));
-        myList.add(new Node("Jakub"));
+        myList.add("Asia");
+        myList.add("Malwina");
+        myList.add("Kacper");
+        myList.add("Franciszek");
+        myList.add("Melania");
+        myList.add("Adrianna");
+        myList.add("Jakub");
 
         for (int i = 0; i < 7; i++){
             System.out.println(myList.get(i));
